@@ -30,6 +30,7 @@ markdown_extensions:
     - pymdownx.tilde
     - attr_list
     - pymdownx.keys
+    - def_list
 extra:
   version:
     method: mike
@@ -46,8 +47,8 @@ repo_url: 'https://github.com/carissalow/rapids'
 copyright: 'Released under AGPL'
 theme:
   name: material
-  icon:
-    logo: material/air-filter
+  logo: img/logo.png
+  favicon: img/logo.png
   palette:
     - scheme: default
       primary: blue
@@ -74,6 +75,7 @@ nav:
     - Installation: 'setup/installation.md'
     - Configuration: setup/configuration.md
     - Execution: setup/execution.md
+    - Citation: citation.md
   - Example Workflows:
     - Minimal: workflow-examples/minimal.md
     - Analysis: workflow-examples/analysis.md
@@ -105,6 +107,14 @@ nav:
         - Fitbit Sleep Summary: features/fitbit-sleep-summary.md
         - Fitbit Steps Summary: features/fitbit-steps-summary.md
         - Fitbit Steps Intraday: features/fitbit-steps-intraday.md
+      - Empatica:
+        - Empatica Accelerometer: features/empatica-accelerometer.md
+        - Empatica Heart Rate: features/empatica-heartrate.md
+        - Empatica Temperature: features/empatica-temperature.md
+        - Empatica Electrodermal Activity: features/empatica-electrodermal-activity.md
+        - Empatica Blood Volume Pulse: features/empatica-blood-volume-pulse.md
+        - Empatica Inter Beat Interval: features/empatica-inter-beat-interval.md
+        - Empatica Tags: features/empatica-tags.md
       - Add New Features: features/add-new-features.md
   - Visualizations:
     - Data Quality: visualizations/data-quality-visualizations.md
@@ -116,10 +126,10 @@ nav:
     - Documentation: developers/documentation.md
     - Testing: developers/testing.md
     - Test cases: developers/test-cases.md
+    - Validation schema of config.yaml: developers/validation-schema-config.md
   - Others:
     - Migrating from beta: migrating-from-old-versions.md
     - Code of Conduct: code_of_conduct.md
     - FAQ: faq.md
     - Team: team.md
     - Change Log: change-log.md
-    - Citation: citation.md
