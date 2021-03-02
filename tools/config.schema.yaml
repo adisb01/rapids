@@ -32,6 +32,14 @@ required:
   - FITBIT_SLEEP_INTRADAY
   - FITBIT_STEPS_SUMMARY
   - FITBIT_STEPS_INTRADAY
+  - EMPATICA_DATA_CONFIGURATION
+  - EMPATICA_ACCELEROMETER
+  - EMPATICA_HEARTRATE
+  - EMPATICA_TEMPERATURE
+  - EMPATICA_ELECTRODERMAL_ACTIVITY
+  - EMPATICA_BLOOD_VOLUME_PULSE
+  - EMPATICA_INTER_BEAT_INTERVAL
+  - EMPATICA_TAGS
   - HISTOGRAM_PHONE_DATA_YIELD
   - HEATMAP_PHONE_DATA_YIELD_PER_PARTICIPANT_PER_TIME_SEGMENT
   - HEATMAP_SENSORS_PER_MINUTE_PER_TIME_SEGMENT
@@ -1084,7 +1092,159 @@ properties:
                     type: integer
                     minimum: 0
                   INCLUDE_ZERO_STEP_ROWS:
-                    type: boolean    
+                    type: boolean   
+
+  EMPATICA_DATA_CONFIGURATION:
+    type: object
+    required: [SOURCE, TIMEZONE]
+    properties:
+      SOURCE:
+        type: object
+        required: [TYPE, FOLDER]
+        properties:
+          TYPE:
+            type: string
+          FOLDER:
+            type: string
+      TIMEZONE:
+        type: object
+        required: [TYPE, VALUE]
+        properties:
+          TYPE:
+            type: string
+          VALUE:
+            type: string
+  
+  EMPATICA_ACCELEROMETER:
+    type: object
+    required: [TABLE, PROVIDERS]
+    properties:
+      TABLE:
+        type: string
+      PROVIDERS:
+        type: ["null", object]
+        properties:
+          DBDP:
+            allOf:
+              - $ref: "#/definitions/PROVIDER"
+              - properties:
+                  FEATURES:
+                    type: array
+                    uniqueItems: True
+                    items:
+                      type: string
+                      enum: ["maxmagnitude", "minmagnitude", "avgmagnitude", "medianmagnitude", "stdmagnitude"]
+
+  EMPATICA_HEARTRATE:
+    type: object
+    required: [TABLE, PROVIDERS]
+    properties:
+      TABLE:
+        type: string
+      PROVIDERS:
+        type: ["null", object]
+        properties:
+          DBDP:
+            allOf:
+              - $ref: "#/definitions/PROVIDER"
+              - properties:
+                  FEATURES:
+                    type: array
+                    uniqueItems: True
+                    items:
+                      type: string
+                      enum: ["maxhr", "minhr", "avghr", "medianhr", "modehr", "stdhr", "diffmaxmodehr", "diffminmodehr", "entropyhr"]
+
+  EMPATICA_TEMPERATURE:
+    type: object
+    required: [TABLE, PROVIDERS]
+    properties:
+      TABLE:
+        type: string
+      PROVIDERS:
+        type: ["null", object]
+        properties:
+          DBDP:
+            allOf:
+              - $ref: "#/definitions/PROVIDER"
+              - properties:
+                  FEATURES:
+                    type: array
+                    uniqueItems: True
+                    items:
+                      type: string
+                      enum: ["maxtemp", "mintemp", "avgtemp", "mediantemp", "modetemp", "stdtemp", "diffmaxmodetemp", "diffminmodetemp", "entropytemp"]
+
+  EMPATICA_ELECTRODERMAL_ACTIVITY:
+    type: object
+    required: [TABLE, PROVIDERS]
+    properties:
+      TABLE:
+        type: string
+      PROVIDERS:
+        type: ["null", object]
+        properties:
+          DBDP:
+            allOf:
+              - $ref: "#/definitions/PROVIDER"
+              - properties:
+                  FEATURES:
+                    type: array
+                    uniqueItems: True
+                    items:
+                      type: string
+                      enum: ["maxeda", "mineda", "avgeda", "medianeda", "modeeda", "stdeda", "diffmaxmodeeda", "diffminmodeeda", "entropyeda"]
+
+  EMPATICA_BLOOD_VOLUME_PULSE:
+    type: object
+    required: [TABLE, PROVIDERS]
+    properties:
+      TABLE:
+        type: string
+      PROVIDERS:
+        type: ["null", object]
+        properties:
+          DBDP:
+            allOf:
+              - $ref: "#/definitions/PROVIDER"
+              - properties:
+                  FEATURES:
+                    type: array
+                    uniqueItems: True
+                    items:
+                      type: string
+                      enum: ["maxbvp", "minbvp", "avgbvp", "medianbvp", "modebvp", "stdbvp", "diffmaxmodebvp", "diffminmodebvp", "entropybvp"]
+
+  EMPATICA_INTER_BEAT_INTERVAL:
+    type: object
+    required: [TABLE, PROVIDERS]
+    properties:
+      TABLE:
+        type: string
+      PROVIDERS:
+        type: ["null", object]
+        properties:
+          DBDP:
+            allOf:
+              - $ref: "#/definitions/PROVIDER"
+              - properties:
+                  FEATURES:
+                    type: array
+                    uniqueItems: True
+                    items:
+                      type: string
+                      enum: ["maxibi", "minibi", "avgibi", "medianibi", "modeibi", "stdibi", "diffmaxmodeibi", "diffminmodeibi", "entropyibi"]
+
+  EMPATICA_TAGS:
+    type: object
+    required: [TABLE, PROVIDERS]
+    properties:
+      TABLE:
+        type: string
+      PROVIDERS:
+        type: ["null", object]
+        additionalProperties:
+          $ref: "#/definitions/PROVIDER"
 
   HISTOGRAM_PHONE_DATA_YIELD:
     type: object
