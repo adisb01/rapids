@@ -1104,8 +1104,10 @@ properties:
         properties:
           TYPE:
             type: string
+            enum: ["ZIP_FILE"]
           FOLDER:
-            type: string
+            type:
+              string
       TIMEZONE:
         type: object
         required: [TYPE, VALUE]
